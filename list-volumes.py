@@ -6,13 +6,11 @@ def lambda_handler(event, context):
     response = ec2.describe_volumes()
     Filters = [
                 {
-        
                 'Name': 'status', 
                 'Values': ['available']
                 }   
             ]
-
-
+    
     unused_volumes = []
 
     for volume in response['Volumes']:
