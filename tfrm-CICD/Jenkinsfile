@@ -1,0 +1,84 @@
+pipeline {
+
+    parameters{
+        choice(name: 'ACTION',choices: ['apply','destroy'],description: 'choice the terraform action')
+    }
+
+    environment {
+        AWS_DEFAULT_REGION = 'ap-south-1'
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        }
+
+        agent any
+
+        stages{
+
+            stage('checkout') {
+                steps {
+                    script {
+                        dir("iac-repo") {
+                    git branch: 'main', url:'https://github.com/krrg14/aws-cost-optimization-budget-plan.git'
+                        }
+                    }
+                }
+            }
+
+            stage('terraform init'){
+                //when {
+                //    expression { params.ACTION == 'apply'}
+                //}
+                steps{
+                    sh 'cd iac-repo/tfrm-CICD; terraform init -migrate-state -force-copy'
+                }
+            }
+
+            stage('terraform plan'){
+                when {
+                    expression { params.ACTION == 'apply'}
+                }
+                steps {
+                    sh 'cd iac-repo/tfrm-CICD; terraform plan'
+                }
+            }
+
+            stage('terraform apply'){
+                when {
+                    expression { params.ACTION == 'apply' }
+                }
+                steps{
+                    sh 'cd iac-repo/tfrm-CICD; terraform apply -auto-approve'
+                }
+            }
+
+            stage('terraform destroy') {
+                when {
+                    expression {params.ACTION == 'destroy' }
+                }
+                steps {
+                    sh 'cd iac-repo/tfrm-CICD; terraform destroy -auto-approve'
+                }
+            }
+
+            /*
+            stage('plan') {
+                steps {
+                    sh 'cd iac-repo/tfrm-CICD; terraform init'
+                    sh 'cd iac-repo/tfrm-CICD; terraform validate'
+                    sh 'cd iac-repo/tfrm-CICD; terraform plan'
+                    sh 'cd iac-repo/tfrm-CICD; terraform apply -auto-approve'
+                }
+            }
+        }
+
+        post{
+            success{
+                echo "infrastructure created successfully"
+            }
+
+            failure {
+                echo "infrastructure created failed"
+            }
+        } */
+    }
+}
