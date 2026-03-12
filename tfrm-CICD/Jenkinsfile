@@ -1,5 +1,9 @@
 pipeline {
 
+    tools {
+        sonarQube 'sonar-scanner'
+    }
+
     parameters{
         choice(name: 'terraformAction',choices: ['apply','destroy'],description: 'choice the terraform action')
     }
@@ -20,6 +24,20 @@ pipeline {
                         dir("iac-repo") {
                         git branch: 'main', url:'https://github.com/krrg14/aws-cost-optimization-budget-plan.git'
                         }
+                    }
+                }
+            }
+
+            stage('sonarQube analysis') {
+                steps {
+                    withSonarQubeEnv('sonarqube') {
+                        sh '''
+                        sonar-scanner \
+                        -Dsonar.projectKey=terraform-iac \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://52.66.228.210:9000 \
+                        -Dsonar.login=sqp_a0b1b1f940c036c54e591e0670ee4c8ec46e73ae
+                        '''
                     }
                 }
             }
