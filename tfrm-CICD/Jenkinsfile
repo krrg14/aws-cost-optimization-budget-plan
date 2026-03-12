@@ -30,7 +30,7 @@ pipeline {
 
             stage('sonarQube analysis') {
                 steps {
-                    withSonarQubeEnv('sonarqube') {
+                    withSonarQubeEnv('server-sonar') {
                         sh '''
                         sonar-scanner \
                         -Dsonar.projectKey=terraform-iac \
