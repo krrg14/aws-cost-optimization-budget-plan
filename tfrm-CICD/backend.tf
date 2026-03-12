@@ -1,4 +1,3 @@
-/*
 terraform { 
     backend "s3" {
         bucket = "terraform-backend-bucket-statefile-backup"
@@ -6,4 +5,3 @@ terraform {
         region = "ap-south-1"
     }
 }
-*/
