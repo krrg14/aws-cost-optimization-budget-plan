@@ -1,11 +1,14 @@
 pipeline {
-
+    
+    agent any
+    /*
     tools {
         sonarScanner 'sonar-scanner'
     }
+    */
 
     parameters{
-        choice(name: 'terraformAction',choices: ['apply','destroy'],description: 'choice the terraform action')
+        choice(name: 'terraformAction',choices: ['Apply','destroy'],description: 'choice the terraform action')
     }
 
     environment {
@@ -13,8 +16,6 @@ pipeline {
         AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         }
-
-        agent any
 
         stages{
 
@@ -50,7 +51,7 @@ pipeline {
 
             stage('terraform plan'){
                 when {
-                    expression { params.terraformAction == 'apply'}
+                    expression { params.terraformAction == 'Apply'}
                 }
                 steps {
                     sh 'cd iac-repo/tfrm-CICD; terraform plan'
@@ -59,7 +60,7 @@ pipeline {
 
             stage('terraform apply'){
                 when {
-                    expression { params.terraformAction == 'apply' }
+                    expression { params.terraformAction == 'Apply' }
                 }
                 steps{
                     sh 'cd iac-repo/tfrm-CICD; terraform apply -auto-approve'
@@ -68,7 +69,7 @@ pipeline {
 
             stage('terraform destroy') {
                 when {
-                    expression {params.terraformAction == 'destroy' }
+                    expression {params.terraformAction == 'Destroy' }
                 }
                 steps {
                     sh 'cd iac-repo/tfrm-CICD; terraform destroy -auto-approve'
