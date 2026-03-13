@@ -1,12 +1,7 @@
 pipeline {
     
     agent any
-    /*
-    tools {
-        sonarScanner 'sonar-scanner'
-    }
-    */
-
+    
     parameters{
         choice(name: 'terraformAction',choices: ['Apply','destroy'],description: 'choice the terraform action')
     }
@@ -29,23 +24,9 @@ pipeline {
                 }
             }
 
-            stage('sonarQube analysis') {
-                steps {
-                    withSonarQubeEnv('server-sonar') {
-                        sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey=terraform-iac \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=http://52.66.228.210:9000 \
-                        -Dsonar.login=sqp_a0b1b1f940c036c54e591e0670ee4c8ec46e73ae
-                        '''
-                    }
-                }
-            }
-
             stage('terraform init'){
                 steps{
-                    sh 'cd iac-repo/tfrm-CICD; terraform init -force-copy'
+                    sh 'cd iac-repo/tfrm-CICD; terraform init'
                 }
             }
 
@@ -85,7 +66,7 @@ pipeline {
                     sh 'cd iac-repo/tfrm-CICD; terraform apply -auto-approve'
                 }
             }
-        }
+        }*/
 
         post{
             success{
@@ -95,7 +76,7 @@ pipeline {
             failure {
                 echo "infrastructure created failed"
             }
-        } */
+        } 
     }
 }
 
