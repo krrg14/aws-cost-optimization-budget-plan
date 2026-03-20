@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevOps Roadmap</title>
+  <style>
+    body { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; color: #1f2937; background: #f8fafc; }
+    header { text-align: center; padding: 3rem 1rem; background: linear-gradient(135deg, #1d4ed8, #0ea5e9); color: white; }
+    header h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); }
+    header p { margin: 0.75rem auto 0; max-width: 700px; font-size: 1.1rem; opacity: 0.95; }
+    .container { max-width: 1100px; margin: 2rem auto; padding: 0 1.25rem; }
+    .roadmap-grid { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .card { background: white; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.25rem; box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06); }
+    .card h2 { margin-top: 0; color: #0f172a; }
+    .card ul { margin: 0.75rem 0 0; padding-left: 1.2rem; }
+    .card li { margin-bottom: 0.5rem; line-height: 1.45; }
+    .stage { display: inline-block; margin-top: 1rem; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; color: #fff; background: #0ea5e9; }
+    .details { margin-top: 2rem; background: #e0f2fe; padding: 1rem 1.25rem; border-left: 4px solid #0284c7; border-radius: 0.5rem; }
+    footer { text-align: center; color: #94a3b8; margin: 3rem 0 1rem; font-size: 0.9rem; }
+    a { color: #0369a1; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DevOps Roadmap</h1>
+    <p>Learn the modern DevOps path, from core fundamentals to cloud-native automation and production-grade reliability.</p>
+  </header>
+
+  <main class="container">
+    <section class="roadmap-grid">
+      <article class="card">
+        <h2>1. Linux + Command Line</h2>
+        <span class="stage">Foundation</span>
+        <ul>
+          <li>Linux basics: shell, file system, package managers</li>
+          <li>Bash scripting, process control, cron jobs</li>
+          <li>Remote work: SSH, keys, tmux/screen</li>
+          <li>Monitoring: top, htop, netstat, df, iostat</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>2. Version Control</h2>
+        <span class="stage">Core Skill</span>
+        <ul>
+          <li>Git workflows: clone, branch, merge, rebase</li>
+          <li>Pull requests, PR reviews, conflict resolution</li>
+          <li>GitHub/GitLab/Bitbucket pipelines basics</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>3. Automation & CI/CD</h2>
+        <span class="stage">Critical</span>
+        <ul>
+          <li>CI tools: GitHub Actions, GitLab CI, Jenkins, CircleCI</li>
+          <li>Build/test pipelines, environment variables, secrets</li>
+          <li>Artifact storage, release tags, versioning</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>4. IaC (Infrastructure as Code)</h2>
+        <span class="stage">Must Have</span>
+        <ul>
+          <li>Terraform, CloudFormation, Pulumi fundamentals</li>
+          <li>State management, drift detection, immutable infra</li>
+          <li>Modular design & reusable modules</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>5. Cloud Platforms</h2>
+        <span class="stage">Essential</span>
+        <ul>
+          <li>AWS core services: EC2, S3, VPC, IAM, RDS, EKS</li>
+          <li>Azure and GCP equivalents: VMs, storage, networking</li>
+          <li>Cost visibility, tagging, reservations, autoscaling</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>6. Containerization & Orchestration</h2>
+        <span class="stage">High Impact</span>
+        <ul>
+          <li>Docker images, layers, registries, docker-compose</li>
+          <li>Kubernetes architecture, deployments, services, ingress</li>
+          <li>Service mesh (Istio/Linkerd), Helm charts</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>7. Observability</h2>
+        <span class="stage">Reliability</span>
+        <ul>
+          <li>Logging: ELK/EFK, Fluentd, CloudWatch Logs</li>
+          <li>Metrics: Prometheus, Grafana, CloudWatch Metrics</li>
+          <li>Tracing: Jaeger, OpenTelemetry</li>
+          <li>Alerting and SLO/SLI/SLA definition</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>8. Security & Compliance</h2>
+        <span class="stage">Culture</span>
+        <ul>
+          <li>IAM best practices, least privilege, MFA</li>
+          <li>Secrets management (Vault, AWS Secrets Manager)</li>
+          <li>Vulnerability scanning, compliance audits, policy as code</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>9. Release Strategies</h2>
+        <span class="stage">Maturity</span>
+        <ul>
+          <li>Blue/green, canary, feature flags, rollback plans</li>
+          <li>Progressive delivery and automated deployment gates</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>10. Team & Culture</h2>
+        <span class="stage">Leadership</span>
+        <ul>
+          <li>Collaborative docs, runbooks, incident reviews</li>
+          <li>DevOps, SRE, and Platform Engineering philosophies</li>
+          <li>Continuous learning, feedback loops, and mentorship</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="details">
+      <h3>How to use this roadmap</h3>
+      <p>Start from the top and build towards the bottom. Practice with real projects, contribute to open-source toolchains, and track progress using milestone tags. Case-study practice and labs are the fastest way to level up.</p>
+      <p>Suggested next step: implement a sample pipeline that provisions Terraform infrastructure in AWS, deploys a Dockerized app to Kubernetes, and wires Prometheus/Grafana observability.</p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2026 DevOps Roadmap • Build, Automate, Observe, Secure
+  </footer>
+</body>
+</html>
